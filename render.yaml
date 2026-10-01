@@ -1,0 +1,16 @@
+# One-click deploy on Render (https://render.com). Express serves both the API and the built React app.
+services:
+  - type: web
+    name: lifeos
+    runtime: node
+    plan: free
+    buildCommand: npm install && npm run build
+    startCommand: npm start
+    healthCheckPath: /api/health
+    envVars:
+      - key: NODE_VERSION
+        value: "22"
+      - key: JWT_SECRET
+        generateValue: true
+      - key: SEED_DEMO
+        value: "true"
