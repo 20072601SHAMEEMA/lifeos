@@ -128,17 +128,29 @@ export function Avatar({ name, photo, size = 44 }) {
 
 /* ---------- Forms ---------- */
 
-export function Field({ label, error, hint, children, id: idProp, required, className = '' }) {
+/** `group`: the control is a button group (not an input), so the caption can't be a <label for>. */
+export function Field({ label, error, hint, children, id: idProp, required, group = false, className = '' }) {
   const autoId = useId();
   const id = idProp || autoId;
   const describedBy = [error && `${id}-error`, hint && `${id}-hint`].filter(Boolean).join(' ') || undefined;
   const child = typeof children === 'function' ? children({ id, 'aria-invalid': Boolean(error), 'aria-describedby': describedBy }) : children;
+  const caption = (
+    <>
+      {label}
+      {required && <span className="field__req" aria-hidden="true"> *</span>}
+    </>
+  );
   return (
     <div className={`field ${error ? 'field--error' : ''} ${className}`}>
-      <label htmlFor={id} className="field__label">
-        {label}
-        {required && <span className="field__req" aria-hidden="true"> *</span>}
-      </label>
+      {group ? (
+        <span id={`${id}-label`} className="field__label">
+          {caption}
+        </span>
+      ) : (
+        <label htmlFor={id} className="field__label">
+          {caption}
+        </label>
+      )}
       {child}
       {hint && !error && (
         <p id={`${id}-hint`} className="field__hint">

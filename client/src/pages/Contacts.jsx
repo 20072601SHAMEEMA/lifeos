@@ -64,7 +64,7 @@ function ContactForm({ initial, onSubmit, onCancel, busy, serverErrors }) {
           {(p) => <input {...p} className="input" type="email" value={form.email} onChange={set('email')} placeholder="name@example.com" />}
         </Field>
       </div>
-      <Field label="Priority">
+      <Field label="Priority" group>
         {() => <Segmented label="Priority" options={PRIORITY_OPTIONS} value={form.priority} onChange={set('priority')} />}
       </Field>
       {!initial.id && (

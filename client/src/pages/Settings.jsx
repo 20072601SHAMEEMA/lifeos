@@ -100,7 +100,7 @@ export default function Settings() {
       <div className="settings-grid">
         <Card>
           <CardHeader icon={Timer} title="Emergency" tone="danger" />
-          <Field label="SOS countdown" hint="Time you have to cancel before emergency mode activates.">
+          <Field label="SOS countdown" group hint="Time you have to cancel before emergency mode activates.">
             {() => (
               <Segmented
                 label="SOS countdown"
@@ -132,7 +132,7 @@ export default function Settings() {
 
         <Card>
           <CardHeader icon={Users} title="Emergency contact preferences" tone="violet" />
-          <Field label="When alerting contacts, include" hint="Messages open in your phone’s messaging app — you always press send.">
+          <Field label="When alerting contacts, include" group hint="Messages open in your phone’s messaging app — you always press send.">
             {() => (
               <Segmented
                 label="Alert mode"
